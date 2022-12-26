@@ -20,7 +20,7 @@ if(hr>=8&&hr<=12)
 }
 else if(hr>=13&&hr<=18)
 {
-    greeting="Good Evening";
+    greeting="Good AfterNoon";
     stylecss.color='yellow';
 }
 else
