@@ -3,8 +3,30 @@ import ToDoList from './ToDoList';
 
 const App=()=>{
     
+  
     const [list,setList]=useState("");
-    const [items,setItems]=useState([]);
+    let [items,setItems]=useState([]);
+
+    let fromlocalstorage=JSON.parse(localStorage.getItem({items}));
+  
+    console.log(fromlocalstorage,"this one");
+    console.log("items", items);
+
+    
+    if(items.length===0)
+    {
+      for(let i=0;i<fromlocalstorage.items.length;i++)
+      {
+        items.push(fromlocalstorage.items[i]);
+      }
+    }
+
+    console.log("items now ",items);
+    localStorage.setItem({items},JSON.stringify({items}));
+
+    // if(fromlocalstorage)
+    // items=[fromlocalstorage];
+
 
 
 
@@ -14,9 +36,15 @@ const App=()=>{
     }
 
     const show=()=>{
+
         setItems((prevValue)=>{
-            return [...prevValue,list];
+            let arr= [...prevValue,list];
+           
+            return arr;
+            
         })
+
+       
         setList("");
     }
 
