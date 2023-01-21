@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css'
-import App from './App'
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// createContext()
+// provider  
+// receiver
 
 ReactDOM.render(
     <>
-   <App/>
+    <BrowserRouter>
+    <App/>
+    </BrowserRouter>
     </>,
-    document.getElementById("root")
+    document.getElementById('root')
 )
-

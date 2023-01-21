@@ -1,93 +1,28 @@
-import React, { useState } from 'react';
-import ToDoList from './ToDoList';
+import React from 'react';
+import Home from './Home'
+
+import About from './About';
+import {Route , Routes} from 'react-router-dom';
+import Menu from './Menu';
+
+import Search from './Search';
+import './index.css';
 
 const App=()=>{
     
-  
-    const [list,setList]=useState("");
-    let [items,setItems]=useState([]);
-
-    let fromlocalstorage=JSON.parse(localStorage.getItem({items}));
-  
-    console.log(fromlocalstorage,"this one");
-    console.log("items", items);
-
+ 
+  return(
     
-    if(items.length===0)
-    {
-      for(let i=0;i<fromlocalstorage.items.length;i++)
-      {
-        items.push(fromlocalstorage.items[i]);
-      }
-    }
-
-    console.log("items now ",items);
-    localStorage.setItem({items},JSON.stringify({items}));
-
-    // if(fromlocalstorage)
-    // items=[fromlocalstorage];
-
-
-
-
-    const inputlist=(e)=>{
-        let x=e.target.value;
-        setList(x);
-    }
-
-    const show=()=>{
-
-        setItems((prevValue)=>{
-            let arr= [...prevValue,list];
-           
-            return arr;
-            
-        })
-
-       
-        setList("");
-    }
-
-    const deleteItems=(id)=>{
-          console.log("hello pj");  
-
-          setItems((oldItems)=>{
-            return oldItems.filter((ele,idx)=>{
-               return idx!==id;
-            });
-          })
-    };
-
-    
-   
-      
-
-   return (
-    <>
-      <div className='main_div'>
-        <div className='center_div'>
-            <h1>To do List</h1>
-            <input type="text" placeholder="Write item to add" className='input_field' onChange={inputlist} value={list}></input>
-            <button className='btn' onClick={show} >+</button>
-
-            <ol>
-                
-                   { //for javascript 
-                    
-                    items.map((val,index)=>{
-                       return <ToDoList 
-                       itemval={val}
-                       value={index}
-                       id={index}
-                       whenclick={deleteItems}
-                       />
-                       })
-                   }
-               
-            </ol>
-        </div>
-      </div>
-     </>
+      <>
+      <Menu/>
+      <Routes>
+         <Route exact path="/" element={<Home/>}></Route>
+         <Route exact path="/About" element={<About/>}></Route>
+         {/* <Route exact path="/Contact" element={<Contact/>}></Route>
+         <Route exact path='/User/:fname/:lname' element={<User/>}></Route> */}
+         <Route exact path='/Search' element={<Search/>}></Route>
+      </Routes>
+      </>
    );
 
 }
